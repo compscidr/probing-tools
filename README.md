@@ -6,4 +6,7 @@
   * TCP, UDP
 * SSH connector
   * Dictionary of common username, passwords
+* Wi-Fi, BT Scanner
+* Honeypot
+* IP, Cookie grabber
 * Vulnerability / Zeroday alert system
