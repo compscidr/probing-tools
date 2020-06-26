@@ -1,0 +1,47 @@
+//
+// Created by jason on 2020-06-26.
+//
+
+#include <sys/socket.h>
+#include <iostream>
+#include <arpa/inet.h>
+#include "udp_scanner.h"
+
+udp_scanner::udp_scanner() {
+}
+
+void udp_scanner::scan(std::string start_address, std::string end_address, int start_port, int end_port, const char *payload, const int payload_len) {
+    std::cout << "Starting scan from " << start_address << "-" << end_address << ":" << start_port << "-" << end_port << std::endl;
+
+    in_addr start_in_addr;
+    in_addr end_in_addr;
+
+    if(!inet_aton(start_address.c_str(), &start_in_addr)) {
+        throw std::runtime_error("Invalid starting address: " + start_address);
+    }
+    if(!inet_aton(end_address.c_str(), &end_in_addr)) {
+        throw std::runtime_error("Invalid ending address: " + end_address);
+    }
+
+    int send_socket = socket(AF_UNSPEC, SOCK_DGRAM | SOCK_CLOEXEC, IPPROTO_UDP);
+
+    while (start_in_addr.s_addr <= end_in_addr.s_addr) {
+        std::cout << "Scanning: " << inet_ntoa(start_in_addr) << std::endl;
+
+        int current_port = start_port;
+        while (current_port <= end_port) {
+            std::cout << "  Scanning port: " << current_port << std::endl;
+
+            sendto(send_socket, payload, payload_len, 0, (struct sockaddr*)&start_in_addr, sizeof(start_in_addr));
+
+            current_port++;
+        }
+
+        int temp = ntohl(start_in_addr.s_addr) + 1;
+        start_in_addr.s_addr = htonl(temp);
+    }
+}
+
+udp_scanner::~udp_scanner() {
+
+}
