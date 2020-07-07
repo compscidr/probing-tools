@@ -38,8 +38,12 @@ void tcp_scanner::scan(std::string start_address, std::string end_address, int s
         throw std::runtime_error("Error opening socket");
     }
 
-    int i = 0;
-    while(start_address <= end_address) {
+    int success = 0;
+    in_addr_t sa = inet_addr(start_address.c_str());
+    in_addr_t ea = inet_addr(end_address.c_str());
+    sa = ntohl(sa);
+    ea = ntohl(ea);
+    while(sa <= ea) {
         struct hostent * server;
         server = gethostbyname(start_address.c_str());
         if (server == nullptr) {
@@ -61,9 +65,13 @@ void tcp_scanner::scan(std::string start_address, std::string end_address, int s
             } else {
                 std::cout << "Connected to " << start_address << ":" << s << std::endl;
                 close(sockfd);
+                success++;
             }
             s++;
         }
         start_address = std::string(increment_address(start_address.c_str()));
+        sa = inet_addr(start_address.c_str());
+        sa = ntohl(sa);
     }
+    std::cout << "Success: " << success << std::endl;
 }
