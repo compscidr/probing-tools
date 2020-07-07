@@ -41,8 +41,8 @@ void udp_scanner::scan(std::string start_address, std::string end_address, int s
             current_port++;
         }
 
-        int temp = ntohl(start_sockaddr_in.sin_addr.s_addr) + 1;
-        start_sockaddr_in.sin_addr.s_addr = htonl(temp);
+        int temp = ntohs(start_sockaddr_in.sin_addr.s_addr) + 1;
+        start_sockaddr_in.sin_addr.s_addr = htons(temp);
     }
 }
 
