@@ -18,7 +18,7 @@
 #include <thread>
 #include "tcp_scanner.h"
 
-constexpr int MAX_OUTSTANDING = 1024;
+constexpr int MAX_OUTSTANDING = 50;
 
 // NOTE: only works for IPv4.  Check out inet_pton/inet_ntop for IPv6 support.
 // https://stackoverflow.com/questions/1505676/how-do-i-increment-an-ip-address-represented-as-a-string
