@@ -25,8 +25,6 @@ jobs:
       - name: set up Cmake
         run: sudo apt-get install -y cmake build-essential libgtest-dev
       - run: echo "The workflow is now ready to test your code."
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
       - run: echo "Building Debug APK."
       - name: Build Android Ping Test
         run: cd android-ping-test && ./gradlew build
