@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       - name: set up Cmake
-        run: apt install -y cmake build-essential libgtest-dev
+        run: sudo apt-get install -y cmake build-essential libgtest-dev
       - run: echo "The workflow is now ready to test your code."
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
