@@ -1,4 +1,4 @@
-package io.left.porttest;
+package com.jasonernst.porttest;
 
 import org.junit.Test;
 
