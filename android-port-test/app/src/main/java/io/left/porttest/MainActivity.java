@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     DatagramSocket socket = null;
                     try {
                         socket = new DatagramSocket(2000);
-                        DatagramPacket p = new DatagramPacket(buf, buf.length, InetAddress.getByName("research.rightmesh.io"), port);
+                        DatagramPacket p = new DatagramPacket(buf, buf.length, InetAddress.getByName("research.rightmesh.com"), port);
                         //DatagramPacket p2 = new DatagramPacket(buf, buf.length, InetAddress.getByName("127.0.0.1"), 5000);
                         socket.send(p);
                         Log.d(TAG, "SEND ON PORT: " + port);
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Log.d(TAG, "trying to connect");
-                    Socket socket = new Socket(InetAddress.getByName("research.rightmesh.io"), 443);
+                    Socket socket = new Socket(InetAddress.getByName("research.rightmesh.com"), 443);
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     OutputStream outputStream = socket.getOutputStream();
                     outputStream.write("test\n".getBytes());

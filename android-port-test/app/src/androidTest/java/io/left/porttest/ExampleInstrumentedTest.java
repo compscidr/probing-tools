@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("io.left.porttest", appContext.getPackageName());
+        assertEquals("com.jasonernst.porttest", appContext.getPackageName());
     }
 }
